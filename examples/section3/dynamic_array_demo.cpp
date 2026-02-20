@@ -90,5 +90,18 @@ int main()
     }
     std::cout << std::endl;
 
+    // Copy Constructor
+    std::cout << "\nCopy Constructor: \n";
+    DynamicArray<int> arr2 = arr;
+    arr2.print();
+    std::cout << std::endl;
+
+    // Copy Assignment
+    std::cout << "Copy Assignment: \n";
+    DynamicArray<int> arr3;
+    arr3 = arr;
+    arr3.print();
+    std::cout << std::endl;
+
     return 0;
 }

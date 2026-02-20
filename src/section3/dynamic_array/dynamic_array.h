@@ -50,8 +50,12 @@ template <typename T> class DynamicArray
     const_iterator end() const;
 
     // Copy Constructor
+    // Perform deep-copy to initialize a new object from an existing one
+    DynamicArray(const DynamicArray& other);
 
     // Copy Assignment
+    // Perform deep-copry to assign values to an already existing object
+    DynamicArray& operator=(const DynamicArray& other);
 };
 
 #include "dynamic_array.tpp"

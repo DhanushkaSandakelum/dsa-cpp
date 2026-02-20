@@ -5,10 +5,9 @@ template <typename T> DynamicArray<T>::DynamicArray() : data{nullptr}, m_size(0)
 }
 
 template <typename T>
- DynamicArray<T>::DynamicArray(std::size_t capacity)
-    : data{nullptr}, m_size(0), m_capacity(capacity)
+DynamicArray<T>::DynamicArray(std::size_t capacity) : data{nullptr}, m_size(0), m_capacity(capacity)
 {
-    data = new T[m_capacity]
+    data = new T[m_capacity];
 }
 
 template <typename T> DynamicArray<T>::~DynamicArray()
@@ -154,4 +153,35 @@ template <typename T> typename DynamicArray<T>::iterator DynamicArray<T>::end()
 template <typename T> typename DynamicArray<T>::const_iterator DynamicArray<T>::end() const
 {
     return data + m_size;
+}
+
+template <typename T> DynamicArray<T>::DynamicArray(const DynamicArray& other)
+{
+    m_size     = other.m_size;
+    m_capacity = other.m_capacity;
+
+    data = new T[m_capacity];
+    for (std::size_t i = 0; i < m_size; ++i)
+    {
+        data[i] = other.data[i];
+    }
+}
+
+template <typename T> DynamicArray<T>& DynamicArray<T>::operator=(const DynamicArray& other)
+{
+    if (this == &other)
+        return *this;
+
+    delete[] data;
+
+    m_size     = other.m_size;
+    m_capacity = other.m_capacity;
+
+    data = new T[m_capacity];
+    for (std::size_t i = 0; i < m_size; ++i)
+    {
+        data[i] = other.data[i];
+    }
+
+    return *this;
 }
