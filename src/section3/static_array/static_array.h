@@ -4,33 +4,39 @@
 #include <cstddef>
 #include <stdexcept>
 
-template <typename T, std::size_t N>
-class StaticArray
+template <typename T, std::size_t N> class StaticArray
 {
-private:
+  private:
     T data[N]; // Fixed size contiguos memory
 
-public:
+  public:
+    // STL style iterator aliases
+    using iterator       = T*;
+    using const_iterator = const T*;
+
     StaticArray();
 
     // Get Size
     constexpr std::size_t size() const;
 
-    // Modify/Access Element
-    T& operator[](std::size_t index); // Non-Const version (modifiable)
+    // Direct Element
+    T&       operator[](std::size_t index);       // Non-Const version (modifiable)
     const T& operator[](std::size_t index) const; // Const version (read-only)
 
-    // Access Element with bound check
+    // Safe Access
+    T&       at(std::size_t index);
     const T& at(std::size_t index) const;
 
-    // Fill Array with a given value
+    // Utilities
     void fill(const T& value);
-
-    // Print Elements
     void print() const;
-
-    // Print Memory Layout
     void printMemLayout() const;
+
+    // Iterator Support
+    iterator       begin();
+    const_iterator begin() const;
+    iterator       end();
+    const_iterator end() const;
 };
 
 #include "static_array.tpp"

@@ -4,7 +4,7 @@
 
 int main()
 {
-    std::cout << "--- Static Array ---\n";
+    std::cout << "--- Static Array ---\n\n";
 
     StaticArray<int, 5> arr;
 
@@ -23,6 +23,11 @@ int main()
     arr.print();
     std::cout << std::endl;
 
+    // ================
+    // MemoryModel
+    // ================
+    std::cout << "Base Address: \n";
+    std::cout << arr.begin() << std::endl;
     // Memory Layout
     std::cout << "Memory Layout: \n";
     arr.printMemLayout();
@@ -46,12 +51,24 @@ int main()
 
     // Access elements with bound check
     std::cout << "Access elements with bound check: \n";
-    try{
+    try
+    {
         std::cout << arr.at(20) << std::endl;
-    } catch(const std::out_of_range& e)
+    }
+    catch (const std::out_of_range& e)
     {
         std::cout << "Exception caught: " << e.what() << "\n";
     }
+    std::cout << std::endl;
+
+    // Loops
+    // Iterator Loop
+    std::cout << "Iterator Loop: \n";
+    for (StaticArray<int, 5>::iterator it = arr.begin(); it != arr.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }
