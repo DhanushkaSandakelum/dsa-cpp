@@ -1,31 +1,31 @@
 #include <iostream>
 
-#include "section3/static_array/static_array.h"
+#include "section3/dynamic_array/dynamic_array.h"
 
 int main()
 {
-    std::cout << "--- Static Array ---\n\n";
+    std::cout << "--- Dynamic Array ---\n\n";
 
-    StaticArray<int, 5> arr;
+    DynamicArray<int> arr;
 
-    // Size
     std::cout << "Initial Size: " << arr.size() << "\n";
+    std::cout << "Initial Capacity: " << arr.capacity() << "\n";
+    std::cout << "Is Empty?: " << arr.is_empty() << "\n";
     std::cout << std::endl;
 
-    // Content
-    std::cout << "Content: \n";
-    arr.print();
-    std::cout << std::endl;
-
-    // Fill
-    std::cout << "Fill: \n";
-    arr.fill(1);
-    arr.print();
+    // Push
+    std::cout << "Push: \n";
+    for (std::size_t i = 1; i <= 5; ++i)
+    {
+        int x = i * 10;
+        arr.push(x);
+        std::cout << "Element pushed: " << x << " Size: " << arr.size()
+                  << " Capacity: " << arr.capacity() << " Content: ";
+        arr.print();
+    }
     std::cout << std::endl;
 
     // Memory model
-    std::cout << "Base Address: \n";
-    std::cout << arr.begin() << std::endl;
     std::cout << "Memory Layout: \n";
     arr.printMemLayout();
     std::cout << std::endl;
@@ -33,16 +33,12 @@ int main()
     // Direct Access
     std::cout << "Direct Access: \n";
     // -- Modify elements
-    // Compiler selects the non-const version: T& operator[](std::size_t index);
     std::cout << "-- Modify elements: \n";
-    arr[0] = 3;
-    arr[1] = 6;
-    arr[2] = 13;
+    arr[1] = 88;
     arr.print();
     std::cout << std::endl;
 
     // -- Read elements
-    // Compiler selects const version: const T& operator[](std::size_t index) const;
     std::cout << "-- Read elements: \n";
     int x = arr[1];
     std::cout << x << " " << arr[2] << std::endl;
@@ -80,7 +76,7 @@ int main()
     std::cout << "Loops: \n";
     // -- Range-based Loop
     std::cout << "-- Range-based Loop: \n";
-    for (const auto& value : arr)
+    for (auto const& value : arr)
     {
         std::cout << value << " ";
     }
@@ -88,7 +84,7 @@ int main()
 
     // -- Iterator Loop
     std::cout << "-- Iterator Loop: \n";
-    for (StaticArray<int, 5>::iterator it = arr.begin(); it != arr.end(); ++it)
+    for (DynamicArray<int>::iterator it = arr.begin(); it != arr.end(); ++it)
     {
         std::cout << *it << " ";
     }

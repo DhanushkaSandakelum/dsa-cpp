@@ -16,10 +16,7 @@ template <typename T, std::size_t N> class StaticArray
 
     StaticArray();
 
-    // Get Size
-    constexpr std::size_t size() const;
-
-    // Direct Element
+    // Direct access
     T&       operator[](std::size_t index);       // Non-Const version (modifiable)
     const T& operator[](std::size_t index) const; // Const version (read-only)
 
@@ -28,9 +25,10 @@ template <typename T, std::size_t N> class StaticArray
     const T& at(std::size_t index) const;
 
     // Utilities
-    void fill(const T& value);
-    void print() const;
-    void printMemLayout() const;
+    constexpr std::size_t size() const;
+    void                  fill(const T& value);
+    void                  print() const;
+    void                  printMemLayout() const;
 
     // Iterator Support
     iterator       begin();

@@ -34,7 +34,13 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 # Comment others when switching.
 # --------------------------------------------------
 
-# --- Section 3: Static Array Demo
+# --- Section 3
+# Static Array Demo
 add_executable(static_array_demo
     examples/section3/static_array_demo.cpp
+)
+
+# Static Array Demo
+add_executable(dynamic_array_demo
+    examples/section3/dynamic_array_demo.cpp
 )

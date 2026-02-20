@@ -1,4 +1,6 @@
-template <typename T, std::size_t N> inline StaticArray<T, N>::StaticArray()
+#include "static_array.h"
+
+template <typename T, std::size_t N> StaticArray<T, N>::StaticArray()
 {
     for (std::size_t i = 0; i < N; ++i)
     {
