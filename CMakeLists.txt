@@ -44,3 +44,8 @@ add_executable(static_array_demo
 add_executable(dynamic_array_demo
     examples/section3/dynamic_array_demo.cpp
 )
+
+# String Demo
+add_executable(string_demo
+    examples/section3/string_demo.cpp
+)
